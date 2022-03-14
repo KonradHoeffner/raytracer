@@ -36,13 +36,13 @@ BoundingBox::BoundingBox(list<Dreieck*> dreiecke, int unterteilung)
 	for(list<Dreieck*>::iterator it = dreiecke.begin();it!=dreiecke.end();it++)
 	{
 		count++;
-		double xMin = min(min(min(min.x,(*it)->p1.x),(*it)->p2.x),(*it)->p3.x);
-		double yMin = min(min(min(min.y,(*it)->p1.y),(*it)->p2.y),(*it)->p3.y);
-		double zMin = min(min(min(min.z,(*it)->p1.z),(*it)->p2.z),(*it)->p3.z);
+		double xMin = std::min(std::min(std::min(std::min.x,(*it)->p1.x),(*it)->p2.x),(*it)->p3.x);
+		double yMin = std::min(std::min(std::min(std::min.y,(*it)->p1.y),(*it)->p2.y),(*it)->p3.y);
+		double zMin = std::min(std::min(std::min(std::min.z,(*it)->p1.z),(*it)->p2.z),(*it)->p3.z);
 
-		double xMax = max(max(max(max.x,(*it)->p1.x),(*it)->p2.x),(*it)->p3.x);
-		double yMax = max(max(max(max.y,(*it)->p1.y),(*it)->p2.y),(*it)->p3.y);
-		double zMax = max(max(max(max.z,(*it)->p1.z),(*it)->p2.z),(*it)->p3.z);
+		double xMax = std::max(std::max(std::max(std::max.x,(*it)->p1.x),(*it)->p2.x),(*it)->p3.x);
+		double yMax = std::max(std::max(std::max(std::max.y,(*it)->p1.y),(*it)->p2.y),(*it)->p3.y);
+		double zMax = std::max(std::max(std::max(std::max.z,(*it)->p1.z),(*it)->p2.z),(*it)->p3.z);
 		min.set(xMin,yMin,zMin);
 		max.set(xMax,yMax,zMax);
 	}

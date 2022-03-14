@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include "Tests.h"
+#include "Vector3d.h"
 
 //////////////////////////////////////////////////////////////////////
 // Konstruktion/Destruktion
