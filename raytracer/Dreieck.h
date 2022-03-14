@@ -1,5 +1,5 @@
 /* Verantwortlicher : Konrad
- * Beschreibung: Datenhaltungsklasse für ein dreieckiges Polygon 
+ * Beschreibung: Datenhaltungsklasse fÃ¼r ein dreieckiges Polygon 
 */
 #ifndef DREIECK_H_
 #define DREIECK_H_

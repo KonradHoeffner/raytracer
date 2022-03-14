@@ -37,7 +37,7 @@ void logVar(string message, bool b)
 
 
 
-/*Gibt erstes Kindelement mit bestimmtem Namen zurück. Erwartet, dass dieses auch existiert (Ansonsten Terminierung des Programms durch assert). */
+/*Gibt erstes Kindelement mit bestimmtem Namen zurÃ¼ck. Erwartet, dass dieses auch existiert (Ansonsten Terminierung des Programms durch assert). */
 TiXmlElement* getChildElementOf(TiXmlElement* element,string name)
 {	
 	TiXmlNode* xmlNode = element->FirstChildElement(name);
@@ -105,7 +105,7 @@ void importSzene(Szene& szene)
 		exit( 1 );
 	}
 
-	logfile << "XML Datei erfolgreich geöffnet: '" << szene.fnSzene << "'." << endl;
+	logfile << "XML Datei erfolgreich geÃ¶ffnet: '" << szene.fnSzene << "'." << endl;
 	
 	TiXmlNode* xmlNode = 0;
 
@@ -114,7 +114,7 @@ void importSzene(Szene& szene)
 	TiXmlElement* triangulationElement = getChildElementOf(rootElement,"triangulation");
 	
 	szene.fnTriangulation = *(new string(triangulationElement->Attribute("src")));
-	//getLogfile() << szene.fnTriangulation << " hä?";
+	//getLogfile() << szene.fnTriangulation << " hÃ¤?";
 
 	TiXmlElement* fensterElement = getChildElementOf(rootElement,"fenster");
 	fensterElement->QueryIntAttribute("breite",&szene.bildBreite);
@@ -202,7 +202,7 @@ void importTriangulation(Szene& szene)
 		exit( 1 );
 	}
 
-	logfile << "XML Datei erfolgreich geöffnet: '" << szene.fnTriangulation << "'." << endl;
+	logfile << "XML Datei erfolgreich geÃ¶ffnet: '" << szene.fnTriangulation << "'." << endl;
 	
 	TiXmlNode* xmlNode = 0;
 

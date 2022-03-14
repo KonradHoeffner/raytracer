@@ -1,4 +1,4 @@
-// Tests.h: Schnittstelle für die Klasse Tests.
+// Tests.h: Schnittstelle fÃ¼r die Klasse Tests.
 //
 //////////////////////////////////////////////////////////////////////
 

@@ -37,7 +37,7 @@ string Vector3d::toString()
 	return s;
 }
 
-// Gibt den Winkel zwischen dem Vector und einem übergebenen Anderen in Bogenmaß zurück.
+// Gibt den Winkel zwischen dem Vector und einem Ã¼bergebenen Anderen in BogenmaÃŸ zurÃ¼ck.
 double Vector3d::winkel(const Vector3d cVect ) const
 {
 	Vector3d a(x,y,z);
@@ -69,13 +69,13 @@ Vector3d Vector3d::normalized()  const
 	return normiert;
 }
 
-// Liefert die Länge des Vektors zurück
+// Liefert die LÃ¤nge des Vektors zurÃ¼ck
 double Vector3d::length() const
 {
 	return (double)sqrt( x * x + y * y + z * z );
 }
 
-// Liefert das Quadrat der Länge des Vektors zurück
+// Liefert das Quadrat der LÃ¤nge des Vektors zurÃ¼ck
 double	Vector3d::sqrLength()
 {
 	return x * x + y * y + z * z;

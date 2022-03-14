@@ -25,9 +25,9 @@ class Farbe
 	string toString();
 	void set(double r,double g,double b);
 	void set(double r,double g,double b,double a);
-	// Sorgt dafür, dass kein Farbwert größer 1 oder kleiner 0 vorkommt
+	// Sorgt dafÃ¼r, dass kein Farbwert grÃ¶ÃŸer 1 oder kleiner 0 vorkommt
 	void cap();
-	// Sorgt dafür, dass kein Farbwert kleiner 0 vorkommt
+	// Sorgt dafÃ¼r, dass kein Farbwert kleiner 0 vorkommt
 	void cap_negativ();
 
 	void operator = (const Farbe& f) {r=f.r;g=f.g;b=f.b;a=f.a;cap_negativ();}

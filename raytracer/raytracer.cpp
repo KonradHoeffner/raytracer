@@ -28,7 +28,7 @@ Vector3d interpoliereVektoren(Vector3d a,Vector3d b, double t)
 	return v;
 }
 
-// Wird benötigt um aus den rechtwinkligen Vektoren a,b und c einen Sehstrahl bilden zu können
+// Wird benÃ¶tigt um aus den rechtwinkligen Vektoren a,b und c einen Sehstrahl bilden zu kÃ¶nnen
 Vector3d interpoliereVektoren(Vector3d a,Vector3d b,Vector3d c,double s,double t)
 {
 	Vector3d d= interpoliereVektoren(a,b,s);
@@ -304,7 +304,7 @@ void raytrace(Szene& szene)
 				};
 			#endif
 			//pSchnittEreignis->normale.normalize();
-			#if defined(REFLEXION)	// Um Verzweigung zu beschränken wird nur entweder Transparenz oder Reflexion zugelassen
+			#if defined(REFLEXION)	// Um Verzweigung zu beschrÃ¤nken wird nur entweder Transparenz oder Reflexion zugelassen
 				if(undurchsichtigkeit==1&&mattigkeit!=1)
 				{
 					Vector3d reflexion = 2*(pSchnittEreignis->normale.dot(-sichtVektor))*(pSchnittEreignis->normale)+sichtVektor;

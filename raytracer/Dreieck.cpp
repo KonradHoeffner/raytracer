@@ -12,7 +12,7 @@ Dreieck::Dreieck(Vector3d p1,Vector3d p2,Vector3d p3)
 	this->p2 = p2;
 	this->p3 = p3;
 	this->material = NULL;
-	// Normale berechnen, da wir keine Information ¸ber die umliegenden Dreiecke haben m¸ssen wir alle Normalen gleichsetzen
+	// Normale berechnen, da wir keine Information √ºber die umliegenden Dreiecke haben m√ºssen wir alle Normalen gleichsetzen
 	Vector3d normale = (p2-p1).cross(p3-p1);
 	this->n1 = normale;
 	this->n2 = normale;
@@ -25,7 +25,7 @@ Dreieck::Dreieck(Vector3d p1,Vector3d p2,Vector3d p3, Material* material)
 	this->p2 = p2;
 	this->p3 = p3;
 	this->material = material;
-	// Normale berechnen, da wir keine Information ¸ber die umliegenden Dreiecke haben m¸ssen wir alle Normalen gleichsetzen
+	// Normale berechnen, da wir keine Information √ºber die umliegenden Dreiecke haben m√ºssen wir alle Normalen gleichsetzen
 	Vector3d normale = (p2-p1).cross(p3-p1);
 	this->n1 = normale;
 	this->n2 = normale;
@@ -68,7 +68,7 @@ double* Dreieck::getBaryzentrisch(Vector3d p)
 	punkte[2]=p3;
 	double flaeche = area();
 
-	// Rechnet nur Betr‰ge aus, Vor. ist also p liegt innerhalb des Dreiecks , dann sind alle bary. Koordinaten positiv
+	// Rechnet nur Betr√§ge aus, Vor. ist also p liegt innerhalb des Dreiecks , dann sind alle bary. Koordinaten positiv
 	for(int i=0;i<3;i++)
 	{
 		alpha[i]=Dreieck(p,punkte[(i+1)%3],punkte[(i+2)%3]).area()/flaeche;

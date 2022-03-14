@@ -1,5 +1,5 @@
 /* Verantwortlicher : Konrad
- * Beschreibung: Enthält die Hauptfunktion Raytrace. Diese wird von der main() Main.cpp mit den nötigen Parametern aufgerufen und rendert
+ * Beschreibung: EnthÃ¤lt die Hauptfunktion Raytrace. Diese wird von der main() Main.cpp mit den nÃ¶tigen Parametern aufgerufen und rendert
  * dann das Bild in eine Bilddatei ohne noch irgendwelche Benutzereingaben anzufordern.
 */
 #ifndef RAYTRACER_H_

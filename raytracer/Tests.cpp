@@ -13,10 +13,10 @@ void test(Szene& szene)
 {
 	getLogfile() << endl << "Tests Anfang" << endl;
 
-	// ------------ Laden der Szene prüfen ----------------------------------------
-	/*getLogfile() << "Abschwächung konstant" << szene.abschwaechung_konstant << endl;
-	getLogfile() << "Abschwächung linear" << szene.abschwaechung_linear << endl;
-	getLogfile() << "Abschwächung quadratisch" << szene.abschwaechung_quadratisch << endl;
+	// ------------ Laden der Szene prÃ¼fen ----------------------------------------
+	/*getLogfile() << "AbschwÃ¤chung konstant" << szene.abschwaechung_konstant << endl;
+	getLogfile() << "AbschwÃ¤chung linear" << szene.abschwaechung_linear << endl;
+	getLogfile() << "AbschwÃ¤chung quadratisch" << szene.abschwaechung_quadratisch << endl;
 	getLogfile() << "Kameraposition " << szene.kamera.position.toString();
 	getLogfile() << "Kameraziel " << szene.kamera.ziel.toString();
 	logVar("Kamerawinkel",szene.kamera.fovy);
@@ -26,7 +26,7 @@ void test(Szene& szene)
 	/*for(list<Lichtquelle*>::iterator it = szene.lichtquellen.begin();it!=szene.lichtquellen.end();++it)
 	getLogfile() << "Lichtquelle " << ": " << (*it)->toString();*/
 
-	// ------------ Laden der Triangulation prüfen ----------------------------------------
+	// ------------ Laden der Triangulation prÃ¼fen ----------------------------------------
 	
 	// Materialien
 

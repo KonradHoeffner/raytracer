@@ -23,7 +23,7 @@ public:
 	double abschwaechung_linear;
 	double abschwaechung_quadratisch;
 
-	int unterteilung; // Unterteilung für das Raumteilungsverfahren
+	int unterteilung; // Unterteilung fÃ¼r das Raumteilungsverfahren
 
 	Kamera kamera;
 	BoundingBox boundingBox;

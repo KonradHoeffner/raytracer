@@ -23,7 +23,7 @@ public:
 	// Setzt die Komponenten auf neue Werte
 	void set( double X, double Y, double Z );
 
-	// Ausgabe über cout
+	// Ausgabe Ã¼ber cout
 	void print();
 
 	// Ausgabe als String
@@ -34,13 +34,13 @@ public:
 	// normalisiert den Vektor
 	void normalize();
 
-	// gibt den normierten Vektor zurück
+	// gibt den normierten Vektor zurÃ¼ck
 	Vector3d normalized() const;
 
-	// Liefert die Länge des Vektors zurück
+	// Liefert die LÃ¤nge des Vektors zurÃ¼ck
 	double length() const;
 
-	// Liefert das Quadrat der Länge des Vektors zurück
+	// Liefert das Quadrat der LÃ¤nge des Vektors zurÃ¼ck
 	double	sqrLength();
 
 	// Berechnet das Skalarprodukt mit cVect
@@ -52,7 +52,7 @@ public:
 	// Berechnet den Winkel zwischen dem Vektor und cVect
 	double winkel(const Vector3d cVect ) const;
 	
-	// Rotiert den Vektor um einen anderen um einen angegebenen Winkel in Bogenmaß
+	// Rotiert den Vektor um einen anderen um einen angegebenen Winkel in BogenmaÃŸ
 	Vector3d Vector3d::rotate(const Vector3d& vec, double w) const;
 
 // arithmetische Operationen
@@ -90,7 +90,7 @@ public:
 		// Kreuzprodukt
 	friend Vector3d operator % ( const Vector3d& cVect1, const Vector3d& cVect2) { return cVect1.cross(cVect2);}
 
-	// Längenvergleich
+	// LÃ¤ngenvergleich
 	friend double operator < ( const Vector3d& cVect1, const Vector3d& cVect2) { return cVect1.length()<cVect2.length();}
 
 	friend bool operator ==    ( const Vector3d& cVect1, const Vector3d& cVect2) { return cVect1.x==cVect2.x&&cVect1.y==cVect2.y&&cVect1.z==cVect2.z; }

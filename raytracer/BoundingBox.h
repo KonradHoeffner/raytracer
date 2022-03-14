@@ -1,4 +1,4 @@
-// BoundingBox.h: Schnittstelle für die Klasse BoundingBox.
+// BoundingBox.h: Schnittstelle fÃ¼r die Klasse BoundingBox.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -17,7 +17,7 @@ const int minPolygoneFuerSplit = 4;
 class BoundingBox  
 {
 public:
-	// min enthält die minimalen - , max die maximalen x,y und z - Werte für die eine Mitgliedschaft in der Box gilt
+	// min enthÃ¤lt die minimalen - , max die maximalen x,y und z - Werte fÃ¼r die eine Mitgliedschaft in der Box gilt
 	Vector3d min,max;
 	double distanz;
 
@@ -37,18 +37,18 @@ public:
 	
 	virtual ~BoundingBox();
 
-	// Prüft, ob ein Punkt in der Box enthalten ist
+	// PrÃ¼ft, ob ein Punkt in der Box enthalten ist
 	bool inside(Vector3d punkt);
-	// Prüft, ob ein Strahl von l1 nach l2 die Bounding Box schneidet oder enthalten ist
+	// PrÃ¼ft, ob ein Strahl von l1 nach l2 die Bounding Box schneidet oder enthalten ist
 	bool inside(Vector3d l1,Vector3d l2);
-	// Prüft, ob ein Dreieck die Bounding Box schneidet oder enthalten ist
+	// PrÃ¼ft, ob ein Dreieck die Bounding Box schneidet oder enthalten ist
 	bool inside(Dreieck dreieck);
 
 	void erzeugeLeereKindBoxen();
 	void split(int tiefe);
-	// Setzt die Distanz der Box zu dem gegebenen Punkt (damit man später sortieren kann)
+	// Setzt die Distanz der Box zu dem gegebenen Punkt (damit man spÃ¤ter sortieren kann)
 	void setDistanzTo(const Vector3d& punkt);
-	// Wie setDistanzTo aber auch für alle Nachfahren und sortiert diese gleich
+	// Wie setDistanzTo aber auch fÃ¼r alle Nachfahren und sortiert diese gleich
 	void setDistanzToRekursiv(const Vector3d& punkt);
 
 	// Gibt zu einer Bounding Box die Kindboxen, in denen der Strahl vorkommt in der Reihenfolge in der der Strahl sie passiert.
@@ -58,7 +58,7 @@ public:
 	SchnittEreignis* getFirstSchnittEreignis(Vector3d l1,Vector3d l2,double distMin,double distMax);
 	bool BoundingBox::isSchnitt(Vector3d l1,Vector3d l2,double distMin,double distMax);
 
-	// Gibt zurück ob die Box Nachfahren hat
+	// Gibt zurÃ¼ck ob die Box Nachfahren hat
 	bool isBlatt();
 	//void loescheKindBoxen();
 	string toString();

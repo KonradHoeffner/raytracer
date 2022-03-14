@@ -1,5 +1,5 @@
 /* Verantwortlicher : Konrad
- * Beschreibung: Kümmert sich um die Raumteilung
+ * Beschreibung: KÃ¼mmert sich um die Raumteilung
 */
 #ifndef RAUMTEILUNGSBOX_H_
 #define RAUMTEILUNGSBOX_H_

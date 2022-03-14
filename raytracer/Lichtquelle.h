@@ -1,4 +1,4 @@
-// Lichtquelle.h: Schnittstelle für die Klasse Lichtquelle.
+// Lichtquelle.h: Schnittstelle fÃ¼r die Klasse Lichtquelle.
 //
 //////////////////////////////////////////////////////////////////////
 

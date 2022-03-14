@@ -78,9 +78,9 @@ void BoundingBox::setDistanzTo(const Vector3d& punkt)
 				if(d<distanz) distanz = d;
 			}
 
-	// Wenn Distanz zu einer Ebene der Boxseiten k¸rzer ist als die zu den Eckpunkten,
-	// dann liegt der Schnittpunkt des k¸rzesten Weges vom Punkt zur Ebene auch auf der Seite und nicht auﬂerhalb
-	// Edit: stimmt nicht! nur bei der zugewandten seite, diese besteht aus den 4 n‰chsten punkten zum punkt
+	// Wenn Distanz zu einer Ebene der Boxseiten k√ºrzer ist als die zu den Eckpunkten,
+	// dann liegt der Schnittpunkt des k√ºrzesten Weges vom Punkt zur Ebene auch auf der Seite und nicht au√üerhalb
+	// Edit: stimmt nicht! nur bei der zugewandten seite, diese besteht aus den 4 n√§chsten punkten zum punkt
 	// erstmal nur mit den Eckpunkten approximiert lassen
 
 	/*d = distancePlanePoint(Vector3d(min.x,min.y,min.z),Vector3d(max.x,min.y,min.z),Vector3d(min.x,max.y,min.z),Vector3d punkt);
@@ -98,7 +98,7 @@ void BoundingBox::setDistanzTo(const Vector3d& punkt)
 	if(d<distanz) distanz = d;*/
 }
 
-// Pr¸ft, ob ein Punkt in der Box enthalten ist
+// Pr√ºft, ob ein Punkt in der Box enthalten ist
 bool BoundingBox::inside(Vector3d punkt)
 {
 	return punkt.x>=min.x&&punkt.x<=max.x&&punkt.y>=min.y&&punkt.y<=max.y&&punkt.z>=min.z&&punkt.z<=max.z;
@@ -116,57 +116,57 @@ double max3(double a,double b, double c)
 }
 
 
-// Pr¸ft, ob eine Linie von l1 nach l2 die Bounding Box schneidet
+// Pr√ºft, ob eine Linie von l1 nach l2 die Bounding Box schneidet
 bool BoundingBox::inside(Vector3d l1,Vector3d l2)
 {
 	Vector3d l1l2 = l2-l1;
 	double tMinX,tMaxX,tMinY,tMaxY,tMinZ,tMaxZ,tMin,tMax; // Geradenparameter t, sodass der x/y/z - Wert von l1 + t*l1l2 = min.x/y/z bzw. max.x/y/z ist
 
-	// Pr¸fung x - Wert
+	// Pr√ºfung x - Wert
 
-	if(l1l2.x!=0) // x - Wert ver‰nderlich
+	if(l1l2.x!=0) // x - Wert ver√§nderlich
 	{ 
 		tMinX = (min.x-l1.x)/l1l2.x;
 		tMaxX = (max.x-l1.x)/l1l2.x;
-		if(tMinX<0&&tMaxX<0) return false; // Strahl f‰ngt erst hinter Box an
+		if(tMinX<0&&tMaxX<0) return false; // Strahl f√§ngt erst hinter Box an
 		if(tMinX>tMaxX) swap(tMinX,tMaxX);
 	}
-	else	 // x - Wert immer gleich, h‰ngt also nicht von t ab
+	else	 // x - Wert immer gleich, h√§ngt also nicht von t ab
 	{
 		if(l1.x<min.x||l1.x>max.x) return false;
 		tMinX = 0;
 		tMaxX = 1;		
 	}
 
-	if(l1l2.y!=0) // y - Wert ver‰nderlich
+	if(l1l2.y!=0) // y - Wert ver√§nderlich
 	{ 
 		tMinY = (min.y-l1.y)/l1l2.y;
 		tMaxY = (max.y-l1.y)/l1l2.y;		
-		if(tMinY<0&&tMaxY<0) return false; // Strahl f‰ngt erst hinter Box an
+		if(tMinY<0&&tMaxY<0) return false; // Strahl f√§ngt erst hinter Box an
 		if(tMinY>tMaxY) swap(tMinY,tMaxY);
 	}
-	else	 // y - Wert immer gleich, h‰ngt also nicht von t ab
+	else	 // y - Wert immer gleich, h√§ngt also nicht von t ab
 	{
 		if(l1.y<min.y||l1.y>max.y) return false;
 		tMinY = 0;
 		tMaxY = 1;		
 	}
 
-	if(l1l2.z!=0) // z - Wert ver‰nderlich
+	if(l1l2.z!=0) // z - Wert ver√§nderlich
 	{ 
 		tMinZ = (min.z-l1.z)/l1l2.z;
 		tMaxZ = (max.z-l1.z)/l1l2.z;	
-		if(tMinZ<0&&tMaxZ<0) return false; // Strahl f‰ngt erst hinter Box an
+		if(tMinZ<0&&tMaxZ<0) return false; // Strahl f√§ngt erst hinter Box an
 		if(tMinZ>tMaxZ) swap(tMinZ,tMaxZ);
 	}
-	else	 // z - Wert immer gleich, h‰ngt also nicht von t ab
+	else	 // z - Wert immer gleich, h√§ngt also nicht von t ab
 	{
 		if(l1.z<min.z||l1.z>max.z) return false;
 		tMinZ = 0;
 		tMaxZ = 1;		
 	}
 
-	// Schnittmenge der mˆglichen t's bestimmen
+	// Schnittmenge der m√∂glichen t's bestimmen
 	tMin=max3(tMinX,tMinY,tMinZ);
 	tMax=min3(tMaxX,tMaxY,tMaxZ);
 	tMax=min(tMax,1);
@@ -175,7 +175,7 @@ bool BoundingBox::inside(Vector3d l1,Vector3d l2)
 	//return true;
 }
 
-/* Pr¸ft ob Box und Dreieck sich schneiden oder ob Dreieck in Box enthalten ist
+/* Pr√ºft ob Box und Dreieck sich schneiden oder ob Dreieck in Box enthalten ist
 Fall 1: Eine der Kanten p1p2, p2p3 oder p3p1 ist (teilweise) im Voxel
 Fall 2: Eine der vier Hauptdiagonalen des Voxels schneidet das Dreieck
 */
@@ -226,7 +226,7 @@ void BoundingBox::split(int tiefe)
 {
 	if(tiefe>0&&dreiecke.size()>=minPolygoneFuerSplit)
 	{
-		//getLogfile() << "Split durchgef¸hrt";
+		//getLogfile() << "Split durchgef√ºhrt";
 		erzeugeLeereKindBoxen();
 		for(list<BoundingBox*>::iterator itBox=kindBoxen.begin();itBox!=kindBoxen.end();itBox++)
 		{		
@@ -272,7 +272,7 @@ bool BoundingBox::isSchnitt(Vector3d l1,Vector3d l2,double distMin,double distMa
 	l1 = l1 + ((l2-l1).normalized()*distMin);
 	
 		if(isBlatt())
-	// Schnittpunkte berechnen und den n‰hesten zur¸ckgeben wenn es einen gibt
+	// Schnittpunkte berechnen und den n√§hesten zur√ºckgeben wenn es einen gibt
 	{
 	
 		for(list<Dreieck*>::iterator it=dreiecke.begin();it!=dreiecke.end();it++)
@@ -309,7 +309,7 @@ SchnittEreignis* BoundingBox::getFirstSchnittEreignis(Vector3d l1,Vector3d l2,do
 	//double distanz  = 10E10;
 
 	if(isBlatt())
-	// Schnittpunkte berechnen und den n‰hesten zur¸ckgeben wenn es einen gibt
+	// Schnittpunkte berechnen und den n√§hesten zur√ºckgeben wenn es einen gibt
 	{
 		//list<Vector3d*> liste;
 		
@@ -345,12 +345,12 @@ SchnittEreignis* BoundingBox::getFirstSchnittEreignis(Vector3d l1,Vector3d l2,do
 			if((*itBox)->inside(l1,l2))
 			{			
 				
-				// Schnittereignis berechnen aber noch nicht ¸bernehmen
+				// Schnittereignis berechnen aber noch nicht √ºbernehmen
 				SchnittEreignis* pSchnittEreignis2 = (*itBox)->getFirstSchnittEreignis(l1,l2,distMin,distMax);
-				// Neues Schnittereignis nur ¸bernehmen, wenn Distanz kleiner als die vom Alten:
-				// pSchnittEreignis zeigt noch auf NULL -> dann ist es egal, wir ¸bernehmen einfach
+				// Neues Schnittereignis nur √ºbernehmen, wenn Distanz kleiner als die vom Alten:
+				// pSchnittEreignis zeigt noch auf NULL -> dann ist es egal, wir √ºbernehmen einfach
 				if(!pSchnittEreignis) pSchnittEreignis = pSchnittEreignis2;else
-				// Es gibt schon ein Schnittereignis, existiert denn das Neue und wenn ja, ist es n‰her dran? Dann ¸bernehmen.
+				// Es gibt schon ein Schnittereignis, existiert denn das Neue und wenn ja, ist es n√§her dran? Dann √ºbernehmen.
 				if(pSchnittEreignis2&&pSchnittEreignis2->distanz<pSchnittEreignis->distanz) pSchnittEreignis = pSchnittEreignis2;
 				//if(pSchnittEreignis) return pSchnittEreignis;
 			}

@@ -1,4 +1,4 @@
-// Material.h: Schnittstelle für die Klasse Material.
+// Material.h: Schnittstelle fÃ¼r die Klasse Material.
 //
 //////////////////////////////////////////////////////////////////////
 

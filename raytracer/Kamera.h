@@ -10,7 +10,7 @@ class Kamera
 {
 public:
 
-	// Alles was n‰her an der Kamera ist wird geclippt 
+	// Alles was n√§her an der Kamera ist wird geclippt 
 	 double clippingNear;
 	// Alles was weiter weg von der Kamera ist wird geclippt
 	 double clippingFar;
@@ -18,9 +18,9 @@ public:
 	 double fovyGrad;
 	 double fovxGrad;
 
-	 // Winkel in Bogenmaﬂ, der den Sichtwinkel in Y - Richtung angibt. Muss zwischen 0 und pi liegen
+	 // Winkel in Bogenma√ü, der den Sichtwinkel in Y - Richtung angibt. Muss zwischen 0 und pi liegen
 	 double fovy;
-	// Winkel in Bogenmaﬂ, der den Sichtwinkel in X - Richtung angibt. Muss zwischen 0 und pi liegen
+	// Winkel in Bogenma√ü, der den Sichtwinkel in X - Richtung angibt. Muss zwischen 0 und pi liegen
 	 double fovx;
 
 	 // Dort steht die Kamera
@@ -33,9 +33,9 @@ public:
 	Kamera();
 	virtual ~Kamera();
 	
-	// liefert normierten Vektor zur¸ck der von der Kameraposition zum Kameraziel zeigt
+	// liefert normierten Vektor zur√ºck der von der Kameraposition zum Kameraziel zeigt
 	Vector3d getSichtVektor();
-	// liefert normierten Vektor zur¸ck der nach rechts zeigt
+	// liefert normierten Vektor zur√ºck der nach rechts zeigt
 	Vector3d getRechts();
 };
 

@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-//	Code für Fenstererzeugung und Initialisierung von OpenGL basiert auf den Tutorials von nehe.gamedev.net
+//	Code fÃ¼r Fenstererzeugung und Initialisierung von OpenGL basiert auf den Tutorials von nehe.gamedev.net
 
 
 #include <windows.h>		// Header File For Windows

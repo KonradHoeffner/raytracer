@@ -1,4 +1,4 @@
-// FileImport.h: Schnittstelle für die Klasse FileImport.
+// FileImport.h: Schnittstelle fÃ¼r die Klasse FileImport.
 //
 //////////////////////////////////////////////////////////////////////
 

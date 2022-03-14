@@ -1,4 +1,4 @@
-// SchnittEreignis.h: Schnittstelle für die Klasse SchnittEreignis.
+// SchnittEreignis.h: Schnittstelle fÃ¼r die Klasse SchnittEreignis.
 //
 //////////////////////////////////////////////////////////////////////
 
