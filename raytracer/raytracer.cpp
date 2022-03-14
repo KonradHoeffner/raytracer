@@ -101,7 +101,7 @@ void zeichneLichtquellen(Szene& szene)
 	{
 		glPushMatrix();
 		glTranslatef((*it)->position.x,(*it)->position.y,(*it)->position.z);
-		auxSolidSphere(0.1);
+		glutSolidSphere(0.1);
 		glPopMatrix();
 	}
 }
@@ -113,7 +113,8 @@ void zeichneBoxen(Szene& szene, BoundingBox& box)
 		glColor3f(f,f,1);	
 		glPushMatrix();
 		glTranslatef((box.min.x+box.max.x)/2,(box.min.y+box.max.y)/2,(box.min.z+box.max.z)/2);
-		auxWireBox(box.max.x-box.min.x,box.max.y-box.min.y,box.max.z-box.min.z);
+		//auxWireBox(box.max.x-box.min.x,box.max.y-box.min.y,box.max.z-box.min.z);
+		glutWireCube(1.0); // todo: fix
 		glPopMatrix();
 		for(list<BoundingBox*>::iterator it=box.kindBoxen.begin();it!=box.kindBoxen.end();it++)
 		{
@@ -271,7 +272,7 @@ void raytrace(Szene& szene)
 				spiegelnd = spiegelnd + pSchnittEreignis->pDreieck->material->spiegelnd *
 					(*itLicht)->farbe * 
 					abschwaechung(szene,l.length())*
-					max(0,
+					std::max(0,
 					pow(
 					r.dot(-sichtVektor),
 					pSchnittEreignis->pDreieck->material->glanz * 2

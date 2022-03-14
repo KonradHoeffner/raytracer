@@ -68,16 +68,16 @@ void Farbe::set(double r,double g,double b,double a)
 
 void Farbe::cap()
 {
-	r = max(min(r,1),0);
-	g = max(min(g,1),0);
-	b = max(min(b,1),0);
-	a = max(min(a,1),0);
+	r = std::max(std::min(r,1.0),0.0);
+	g = std::max(std::min(g,1.0),0.0);
+	b = std::max(std::min(b,1.0),0.0);
+	a = std::max(std::min(a,1.0),0.0);
 }
 
 void Farbe::cap_negativ()
 {
-	r = max(r,0);
-	g = max(g,0);
-	b = max(b,0);
-	a = max(a,0);
+	r = std::max(r,0.0);
+	g = std::max(g,0.0);
+	b = std::max(b,0.0);
+	a = std::max(a,0.0);
 }
