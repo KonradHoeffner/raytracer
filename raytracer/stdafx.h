@@ -39,9 +39,9 @@ const int STRAHL_REKURSIONS_TIEFE = 4;
 #include <sstream>
 #include "tinyxml.h"
 
-#include <gl\gl.h>			// Header File For The OpenGL32 Library
-#include <gl\glu.h>			// Header File For The GLu32 Library
-#include <gl\glaux.h>		// Header File For The Glaux Library
+#include <GL/gl.h>			// Header File For The OpenGL32 Library
+#include <GL/glu.h>			// Header File For The GLu32 Library
+#include <GL/glaux.h>		// Header File For The Glaux Library
 
 #include "Vector3d.h"
 
