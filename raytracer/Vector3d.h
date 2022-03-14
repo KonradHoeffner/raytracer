@@ -3,7 +3,7 @@
 
 //#include "common/definitions.h"
 
-#include "StdAfx.h"
+#include "stdafx.h"
 
 
 class Vector3d {

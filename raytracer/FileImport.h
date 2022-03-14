@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "StdAfx.h"
+#include "stdafx.h"
 
 ofstream& getLogfile();
 void logVar(string message, double d);

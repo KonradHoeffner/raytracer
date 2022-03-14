@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 /*
  *		This Code Was Created By Jeff Molofee 2000
  *		A HUGE Thanks To Fredric Echols For Cleaning Up

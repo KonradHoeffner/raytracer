@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "3DMath.h"
 
 Vector3d Nullvektor(234234,234212,12323);

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 
 // p1... sind Punkte auf der Ebene
 bool intersectPlaneLine(Vector3d p1,Vector3d p2,Vector3d p3,Vector3d l1,Vector3d l2,Vector3d& schnittPunkt);

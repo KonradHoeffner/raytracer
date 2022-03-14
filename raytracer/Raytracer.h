@@ -5,7 +5,7 @@
 #ifndef RAYTRACER_H_
 #define RAYTRACER_H_
 
-#include "StdAfx.h"
+#include "stdafx.h"
 
 	void raytrace(Szene& szene);
 	void zeichneDreiecke(Szene& szene);

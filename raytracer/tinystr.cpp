@@ -29,7 +29,7 @@ distribution.
 
 #ifndef TIXML_USE_STL
 
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "tinystr.h"
 
 // Error value for find primitive

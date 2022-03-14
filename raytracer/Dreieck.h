@@ -4,7 +4,7 @@
 #ifndef DREIECK_H_
 #define DREIECK_H_
 
-#include "StdAfx.h"
+#include "stdafx.h"
 
 class Dreieck
 {

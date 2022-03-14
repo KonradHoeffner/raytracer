@@ -5,7 +5,7 @@
 #ifndef SZENE_H_
 #define SZENE_H_
 
-#include "StdAfx.h"
+#include "stdafx.h"
 
 class Szene
 {

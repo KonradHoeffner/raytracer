@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 //	Code für Fenstererzeugung und Initialisierung von OpenGL basiert auf den Tutorials von nehe.gamedev.net
 
 

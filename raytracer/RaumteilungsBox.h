@@ -4,7 +4,7 @@
 #ifndef RAUMTEILUNGSBOX_H_
 #define RAUMTEILUNGSBOX_H_
 
-#include "StdAfx.h"
+#include "stdafx.h"
 
 class RaumteilungsBox
 {

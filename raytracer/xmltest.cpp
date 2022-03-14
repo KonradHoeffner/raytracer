@@ -2,7 +2,7 @@
    Test program for TinyXML.
 */
 
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "tinyxml.h"
 
 #ifdef TIXML_USE_STL

@@ -4,7 +4,7 @@
 #ifndef KAMERA_H_
 #define KAMERA_H_
 
-#include "StdAfx.h"
+#include "stdafx.h"
 
 class Kamera
 {
