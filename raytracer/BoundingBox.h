@@ -56,13 +56,13 @@ public:
 	list<BoundingBox*>* getGeschnitteneKindBoxenSortiert(Vector3d l1,Vector3d l2);
 
 	SchnittEreignis* getFirstSchnittEreignis(Vector3d l1,Vector3d l2,double distMin,double distMax);
-	bool BoundingBox::isSchnitt(Vector3d l1,Vector3d l2,double distMin,double distMax);
+	bool isSchnitt(Vector3d l1,Vector3d l2,double distMin,double distMax);
 
 	// Gibt zurück ob die Box Nachfahren hat
 	bool isBlatt();
 	//void loescheKindBoxen();
 	string toString();
-	int BoundingBox::offset(int x, int y,int z);
+	int offset(int x, int y,int z);
 
 	// box1 < box2 gdw. die Entfernung zu box1 ist kleiner als die zu box2	
 	double operator < (  const BoundingBox& box) { return (distanz<box.distanz);}

@@ -30,7 +30,7 @@ public:
 
 	Vector3d getMittelpunkt();
 	Vector3d getNormale(Vector3d punkt);
-	Vector3d Dreieck::getNormale(Vector3d punkt,Vector3d sichtVektor);
+	Vector3d getNormale(Vector3d punkt,Vector3d sichtVektor);
 	string toString();
 	string toStringBaryzentrisch(Vector3d p);
 	virtual ~Dreieck();
@@ -39,8 +39,8 @@ public:
 	// Testet ob Mittelpunkt weiter links liegt (wird nur implementiert weil STL Collections einen < Operator erwarten)
 	friend double operator < (  const Dreieck& d1, const Dreieck& d2) { return (d1.p1.x+d1.p2.x+d1.p3.x)<(d2.p1.x+d2.p2.x+d2.p3.x);}
 
-	friend bool operator ==    ( const Dreieck& d1, const Dreieck& d2) { return d1.p1==d2.p1&&d1.p2==d2.p2&&d1.p3==d2.p3;}
+	friend bool operator == ( const Dreieck& d1, const Dreieck& d2) { return d1.p1==d2.p1&&d1.p2==d2.p2&&d1.p3==d2.p3;}
 
 };
 
-#endif /*POLYGON_H_*/
+#endif /*DREIECK_H_*/

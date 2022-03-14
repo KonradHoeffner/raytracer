@@ -53,7 +53,7 @@ public:
 	double winkel(const Vector3d cVect ) const;
 	
 	// Rotiert den Vektor um einen anderen um einen angegebenen Winkel in Bogenmaß
-	Vector3d Vector3d::rotate(const Vector3d& vec, double w) const;
+	Vector3d rotate(const Vector3d& vec, double w) const;
 
 // arithmetische Operationen
 //	Vector3d& operator += ( Vector3d& cVect ) { x += cVect.x; y += cVect.y; z += cVect.z; }
