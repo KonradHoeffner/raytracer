@@ -26,7 +26,6 @@ const int STRAHL_REKURSIONS_TIEFE = 4;
 #define REFLEXION
 //#define unterteilung 2
 
-#include <windows.h>
 #include <map>
 //#include <list>
 #include <cstring>
@@ -41,7 +40,7 @@ const int STRAHL_REKURSIONS_TIEFE = 4;
 
 #include <GL/gl.h>			// Header File For The OpenGL32 Library
 #include <GL/glu.h>			// Header File For The GLu32 Library
-#include <GL/glaux.h>		// Header File For The Glaux Library
+//#include <GL/glaux.h>		// Header File For The Glaux Library
 
 #include "Vector3d.h"
 
