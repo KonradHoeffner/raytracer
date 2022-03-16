@@ -1,1 +1,0 @@
-g++ raytracer/*.cpp -lfreeglut

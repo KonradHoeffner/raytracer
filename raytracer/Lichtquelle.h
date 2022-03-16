@@ -11,6 +11,10 @@
 
 #include "stdafx.h"
 
+class Vector3d;
+class Farbe;
+class Lichtquelle;
+
 class Lichtquelle  
 {
 public:

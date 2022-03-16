@@ -1,0 +1,3 @@
+g++ -fmodules-ts -std=c++20 raytracer/Szene.cpp -lglut
+g++ -fmodules-ts -std=c++20 raytracer/Main.cpp -lglut
+#g++ raytracer/*.cpp -lglut

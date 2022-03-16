@@ -1,14 +1,3 @@
-// Material.h: Schnittstelle für die Klasse Material.
-//
-//////////////////////////////////////////////////////////////////////
-
-#ifndef MATERIAL_H_
-#define MATERIAL_H_
-
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-
 #include "stdafx.h"
 
 class Material  

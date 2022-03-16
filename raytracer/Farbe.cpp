@@ -1,83 +1,94 @@
-// Farbe.cpp: Implementierung der Klasse Farbe.
-//
-//////////////////////////////////////////////////////////////////////
+module;
 
-#include "stdafx.h"
-#include "Farbe.h"
+#include <algorithm>
 
-//////////////////////////////////////////////////////////////////////
-// Konstruktion/Destruktion
-//////////////////////////////////////////////////////////////////////
+export module Farbe;
 
-Farbe::Farbe()
+class Farbe
 {
-	r=1;
-	g=1;
-	b=1;
-	a=1;
-}
+	public:
 
-Farbe::Farbe(double r,double g,double b)
-{
-	this->r=r;
-	this->g=g;
-	this->b=b;
-	a=1;
-	cap_negativ();
-}
+	double r,g,b,a;
 
-Farbe::Farbe(double r,double g,double b,double a)
-{
-	this->r=r;
-	this->g=g;
-	this->b=b;
-	this->a=a;
-	cap_negativ();
-}
+	void operator = (const Farbe& f) {r=f.r;g=f.g;b=f.b;a=f.a;cap_negativ();}
+	bool operator == (const Farbe& f) { return r==f.r&&g==f.g&&b==f.b&&a==f.a; }
+	Farbe operator * (const Farbe& f) { return Farbe(r*f.r,g*f.g,b*f.b,a*f.a); }
+	Farbe operator * (double d)		  {Farbe ergebnis(r*d,g*d,b*d,1);ergebnis.cap_negativ();return ergebnis;}
+	Farbe operator + (const Farbe& f) {Farbe ergebnis(r+f.r,g+f.g,b+f.b,1);ergebnis.cap_negativ();return ergebnis; }
 
-Farbe::~Farbe()
-{
+	Farbe()
+	{
+		r=1;
+		g=1;
+		b=1;
+		a=1;
+	}
 
-}
+	Farbe(double r,double g,double b)
+	{
+		this->r=r;
+		this->g=g;
+		this->b=b;
+		a=1;
+		cap_negativ();
+	}
 
-string Farbe::toString()
-{
-	char c_str[50];
-	sprintf(c_str," r: %lf g: %lf b: %lf a: %lf",r,g,b,a);
-	string s(c_str);
-	return s;
-}
+	Farbe(double r,double g,double b,double a)
+	{
+		this->r=r;
+		this->g=g;
+		this->b=b;
+		this->a=a;
+		cap_negativ();
+	}
 
-void Farbe::set(double r,double g,double b)
-{
-	this->r=r;
-	this->g=g;
-	this->b=b;
-	a=1;
-	cap_negativ();
-}
+	~Farbe()
+	{
 
-void Farbe::set(double r,double g,double b,double a)
-{
-	this->r=r;
-	this->g=g;
-	this->b=b;
-	this->a=a;
-	cap_negativ();
-}
+	}
 
-void Farbe::cap()
-{
-	r = std::max(std::min(r,1.0),0.0);
-	g = std::max(std::min(g,1.0),0.0);
-	b = std::max(std::min(b,1.0),0.0);
-	a = std::max(std::min(a,1.0),0.0);
-}
+	std::string toString()
+	{
+		char c_str[50];
+		sprintf(c_str," r: %lf g: %lf b: %lf a: %lf",r,g,b,a);
+		std::string s(c_str);
+		return s;
+	}
 
-void Farbe::cap_negativ()
-{
-	r = std::max(r,0.0);
-	g = std::max(g,0.0);
-	b = std::max(b,0.0);
-	a = std::max(a,0.0);
-}
+	void set(double r,double g,double b)
+	{
+		this->r=r;
+		this->g=g;
+		this->b=b;
+		a=1;
+		cap_negativ();
+	}
+
+	void set(double r,double g,double b,double a)
+	{
+		this->r=r;
+		this->g=g;
+		this->b=b;
+		this->a=a;
+		cap_negativ();
+	}
+
+	// Sorgt dafür, dass kein Farbwert größer 1 oder kleiner 0 vorkommt
+	void cap()
+	{
+		r = std::max(std::min(r,1.0),0.0);
+		g = std::max(std::min(g,1.0),0.0);
+		b = std::max(std::min(b,1.0),0.0);
+		a = std::max(std::min(a,1.0),0.0);
+	}
+
+	// Sorgt dafür, dass kein Farbwert kleiner 0 vorkommt
+	void cap_negativ()
+	{
+		r = std::max(r,0.0);
+		g = std::max(g,0.0);
+		b = std::max(b,0.0);
+		a = std::max(a,0.0);
+	}
+
+};
