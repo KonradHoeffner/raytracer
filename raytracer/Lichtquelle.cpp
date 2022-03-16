@@ -1,32 +1,28 @@
-// Lichtquelle.cpp: Implementierung der Klasse Lichtquelle.
-//
-//////////////////////////////////////////////////////////////////////
+module;
 
-#include "stdafx.h"
-#include "Lichtquelle.h"
+#include <string>
 
-//////////////////////////////////////////////////////////////////////
-// Konstruktion/Destruktion
-//////////////////////////////////////////////////////////////////////
+export module Lichtquelle;
 
-Lichtquelle::Lichtquelle()
-{
-	position.set(0,10,0);
-	farbe.set(1,1,1);
+import Vector3d;
+//import Farbe;
+
+export class Lichtquelle {
+public:
+/*
+								Vector3d position;
+  Farbe farbe;
+
+Lichtquelle() {
+  position.set(0, 10, 0);
+  farbe.set(1, 1, 1);
 }
 
-Lichtquelle::Lichtquelle(Vector3d position,Farbe farbe)
-{
-	this->position = position;
-	this->farbe = farbe;
+Lichtquelle(Vector3d position, Farbe farbe) {
+  this->position = position;
+  this->farbe = farbe;
 }
 
-Lichtquelle::~Lichtquelle()
-{
-
-}
-
-string Lichtquelle::toString()
-{
-	return "Lichtquelle - Position: " + position.toString() + " Farbe: " + farbe.toString();	
-}
+std::string toString() { return "Lichtquelle - Position: " + position.toString() + " Farbe: " + farbe.toString(); }
+*/
+};

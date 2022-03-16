@@ -1,13 +1,16 @@
 module;
 
 #include "stdafx.h"
+#include <stdio.h>
+#include <string>
 
 export module Dreieck;
 
 import Vector3d;
 import Material;
+import 3DMath;
 
-class Dreieck
+export class Dreieck
 {
 public:
 
@@ -18,30 +21,10 @@ public:
 
 	Material* material;
 
-	Dreieck();
-	Dreieck(Vector3d p1,Vector3d p2,Vector3d p3);
-	Dreieck(Vector3d p1,Vector3d p2,Vector3d p3, Material* material);
-	Dreieck(Vector3d p1,Vector3d p2,Vector3d p3,Vector3d n1,Vector3d n2,Vector3d n3, Material* material);
-
-	double area();
-	double* getBaryzentrisch(Vector3d p);
-	//double getDistance(Vector3d p);
-	bool inside(Vector3d p);
-	bool inside(Vector3d l1,Vector3d l2);
-
-	Vector3d getMittelpunkt();
-	Vector3d getNormale(Vector3d punkt);
-	Vector3d getNormale(Vector3d punkt,Vector3d sichtVektor);
-	string toString();
-	string toStringBaryzentrisch(Vector3d p);
-	virtual ~Dreieck();
-
-
 	// Testet ob Mittelpunkt weiter links liegt (wird nur implementiert weil STL Collections einen < Operator erwarten)
 	friend double operator < (  const Dreieck& d1, const Dreieck& d2) { return (d1.p1.x+d1.p2.x+d1.p3.x)<(d2.p1.x+d2.p2.x+d2.p3.x);}
 
 	friend bool operator == ( const Dreieck& d1, const Dreieck& d2) { return d1.p1==d2.p1&&d1.p2==d2.p2&&d1.p3==d2.p3;}
-
 
 	Dreieck()
 	{
@@ -72,10 +55,6 @@ public:
 		this->n1 = normale;
 		this->n2 = normale;
 		this->n3 = normale;
-	}
-
-	~Dreieck()
-	{
 	}
 
 	Dreieck(Vector3d p1,Vector3d p2,Vector3d p3,Vector3d n1,Vector3d n2,Vector3d n3, Material* material)
@@ -136,6 +115,10 @@ public:
 		return normale;
 	}
 
+bool intersectLine(Vector3d l1,Vector3d l2,Vector3d& schnittPunkt)
+{
+	return intersectPolygon3Line(this->p1,this->p2,this->p3,l1,l2,schnittPunkt);
+}
 
 
 	bool inside(Vector3d p)
@@ -151,7 +134,7 @@ public:
 	bool inside(Vector3d l1,Vector3d l2)
 	{
 		Vector3d muell;
-		return intersectDreieckLine(*this,l1,l2,muell);
+		return intersectLine(l1,l2,muell);
 
 	}
 
