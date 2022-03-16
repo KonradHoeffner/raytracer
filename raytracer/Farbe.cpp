@@ -4,7 +4,7 @@ module;
 
 export module Farbe;
 
-class Farbe
+export class Farbe
 {
 	public:
 

@@ -4,7 +4,7 @@ export module Kamera;
 
 import Vector3d;
 
-class Kamera
+export class Kamera
 {
 public:
 
@@ -28,9 +28,6 @@ public:
 	// Zeigt nach oben
 	 Vector3d oben;
 
-	Kamera();
-	virtual ~Kamera();
-
 	Kamera()
 	{
 		 clippingNear = 0.01;
@@ -40,10 +37,6 @@ public:
 		 position.set(0,0,5);
 		 ziel.set(0,0,0);
 		 oben.set(0,1,0);
-	}
-
-	~Kamera()
-	{
 	}
 
 	// liefert normierten Vektor zurück der von der Kameraposition zum Kameraziel zeigt

@@ -7,7 +7,7 @@ export module Vector3d;
 
 using namespace std;
 
-class Vector3d
+export class Vector3d
 {
 	public:
 
