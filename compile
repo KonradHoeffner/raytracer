@@ -1,10 +1,17 @@
-g++ -fmodules-ts -std=c++20 -lGL -lglut \
+#!/bin/sh
+clear
+#only needs to be done once, comment out to save time after the first run
+#g++ -c -fmodules-ts -x c++-system-header  -std=c++20 iostream algorithm string vector cmath list cassert fstream
+g++ -fmodules-ts -std=c++20 -lGL -lglut -c \
 raytracer/Vector3d.cpp \
 raytracer/Dreieck.cpp \
-raytracer/3DMath.cpp \
-raytracer/BoundingBox.cpp \
+raytracer/Math3d.cpp \
+raytracer/SchnittEreignis.cpp \
+raytracer/tinyxml.cpp \
 raytracer/Farbe.cpp \
 raytracer/Lichtquelle.cpp \
 raytracer/Material.cpp \
 raytracer/Kamera.cpp
 raytracer/Szene.cpp
+raytracer/FileImport.cpp \
+raytracer/BoundingBox.cpp \

@@ -1,8 +1,9 @@
-//module;
+module;
 
-//#include <iostream>
+#include <math.h>
+#include <numbers>
 
-export module 3DMath;
+export module Math3d;
 
 import Vector3d;
 
@@ -48,7 +49,7 @@ double d; // d ist die Entfernung der Ebene vom Ursprung [0,0,0]
 Vector3d normale=((p2-p1)%(p3-p1)).normalized(); // Normalenvektor entsteht durch Kreuzprodukt der Aufspannvektoren, normalisiert
 // Form: Ax+By+Cz+D=0 ,A,B,C = Normalenvektor[x,y,z], x,y,z = bel. Punkt von Ebene (hier p1) -> D=-n*p1
 d=-(normale*p1); 
-return abs((normale*punkt)+d);
+return std::abs((normale*punkt)+d);
 }
 
 bool intersectPlaneLine(Vector3d p1,Vector3d p2,Vector3d p3,Vector3d l1,Vector3d l2,Vector3d& schnittPunkt) 
@@ -65,7 +66,7 @@ dist2=(normale*l2)+d;
 if ((dist1*dist2)>0) return false;
 // Geradengleichung P = L1 + t*L1L2
 Vector3d l1l2 =(l2-l1);
-l1l2.print();
+//l1l2.print();
 // Geradengleichung P einsetzen in N*P + D = 0 -> N*(L1+t*L2) + D = 0 -> t = -(D+n*L1)/(L1L2*n)
 
 double t = -(d+normale*l1)/(l1l2*normale);
@@ -88,7 +89,7 @@ export bool intersectPolygon3Line(Vector3d p1,Vector3d p2,Vector3d p3,Vector3d l
  itoa(angle*100,message,10);
  MessageBox(NULL,message, "Winkelsumme",MB_ICONINFORMATION);*/
  if ((angle>359.95)&(angle<360.15)) angle=360;
- if (!((angle>(PI*2-0.1))&&(angle<PI*2+0.1))) return false;
+ if (!((angle>(std::numbers::pi*2-0.1))&&(angle<std::numbers::pi*2+0.1))) return false;
  schnittPunkt = v;
  return true;
 };

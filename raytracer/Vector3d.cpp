@@ -1,9 +1,7 @@
-module;
-
-#include <math.h>
-#include <string>
-
 export module Vector3d;
+
+import <string>;
+import <cmath>;
 
 export class Vector3d
 {

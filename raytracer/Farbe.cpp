@@ -1,8 +1,6 @@
-module;
-
-#include <algorithm>
-
 export module Farbe;
+
+import <algorithm>;
 
 export class Farbe
 {

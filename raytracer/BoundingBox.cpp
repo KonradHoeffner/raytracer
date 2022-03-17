@@ -2,6 +2,17 @@ export module BoundingBox;
 
 import Vector3d;
 import Dreieck;
+import SchnittEreignis;
+import FileImport;
+import <list>;
+import <string>;
+import <cassert>;
+using std::min;
+using std::max;
+using std::swap;
+using std::iterator;
+using std::list;
+using std::string;
 
 // Gesplittet wird nur, wenn mindestens so viele Dreiecke in der Box liegen
 const int minPolygoneFuerSplit = 4;
@@ -19,24 +30,6 @@ public:
 	list<Dreieck *> dreiecke;
 
 	list<BoundingBox *> kindBoxen;
-
-	BoundingBox(list<Dreieck *> dreiecke, int unterteilung);
-
-	// Gibt zu einer Bounding Box die Kindboxen, in denen der Strahl vorkommt in
-	// der Reihenfolge in der der Strahl sie passiert. Vorraussetzung: Liste der
-	// Kinder ist sortiert nach Distanz (erledigt setDistanzToRekursiv()
-	// automatisch aber nicht setDistanzTo() )
-	list<BoundingBox *> *getGeschnitteneKindBoxenSortiert(Vector3d l1,
-																												Vector3d l2);
-
-	SchnittEreignis *getFirstSchnittEreignis(Vector3d l1, Vector3d l2,																					 double distMin, double distMax);
-	bool isSchnitt(Vector3d l1, Vector3d l2, double distMin, double distMax);
-
-	// Gibt zurück ob die Box Nachfahren hat
-	bool isBlatt();
-	// void loescheKindBoxen();
-	string toString();
-	int offset(int x, int y, int z);
 
 	// box1 < box2 gdw. die Entfernung zu box1 ist kleiner als die zu box2
 	double operator<(const BoundingBox &box) { return (distanz < box.distanz); }
@@ -56,7 +49,7 @@ public:
 	}
 
 	// Spannt eine Bounding Box um eine Menge von Dreiecken auf
-	BoundingBox(list<Dreieck *> dreiecke, int unterteilung) {
+	BoundingBox(list<Dreieck*> dreiecke, int unterteilung) {
 		this->unterteilung = unterteilung;
 		this->dreiecke = dreiecke;
 
@@ -94,6 +87,7 @@ public:
 		kindBoxen.sort();
 	}
 
+	// Gibt zurück ob die Box Nachfahren hat
 	bool isBlatt() { return kindBoxen.empty(); }
 
 	// Setzt die Distanz der Box zu dem gegebenen Punkt (damit man später
@@ -297,8 +291,11 @@ public:
 
 	~BoundingBox() {}
 
-	list<BoundingBox *> *
-	getGeschnitteneKindBoxenSortiert(Vector3d l1, Vector3d l2) {
+	// Gibt zu einer Bounding Box die Kindboxen, in denen der Strahl vorkommt in
+	// der Reihenfolge in der der Strahl sie passiert. Vorraussetzung: Liste der
+	// Kinder ist sortiert nach Distanz (erledigt setDistanzToRekursiv()
+	// automatisch aber nicht setDistanzTo() )
+	list<BoundingBox *> *getGeschnitteneKindBoxenSortiert(Vector3d l1, Vector3d l2) {
 		list<BoundingBox *> *pBoxen = new list<BoundingBox *>;
 		return pBoxen;
 		for (list<BoundingBox *>::iterator itBox = kindBoxen.begin();
@@ -309,8 +306,7 @@ public:
 	}
 
 	// Gibt an, ob der Stahl von l1 nach l2 ein Dreieck schneidet
-	bool isSchnitt(Vector3d l1, Vector3d l2, double distMin,
-															double distMax) {
+	bool isSchnitt(Vector3d l1, Vector3d l2, double distMin, double distMax) {
 		Vector3d schnittPunkt;
 		l1 = l1 + ((l2 - l1).normalized() * distMin);
 
@@ -318,8 +314,7 @@ public:
 		// Schnittpunkte berechnen und den nähesten zurückgeben wenn es einen gibt
 		{
 
-			for (list<Dreieck *>::iterator it = dreiecke.begin();
-					 it != dreiecke.end(); it++) {
+			for (list<Dreieck *>::iterator it = dreiecke.begin(); it != dreiecke.end(); it++) {
 	if (intersectDreieckLine(**it, l1, l2, schnittPunkt))
 		return true;
 			}

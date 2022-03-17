@@ -1,33 +1,22 @@
-// SchnittEreignis.cpp: Implementierung der Klasse SchnittEreignis.
-//
-//////////////////////////////////////////////////////////////////////
+export module SchnittEreignis;
 
-#include "stdafx.h"
-#include "SchnittEreignis.h"
+import Vector3d;
+import Dreieck;
 
-//////////////////////////////////////////////////////////////////////
-// Konstruktion/Destruktion
-//////////////////////////////////////////////////////////////////////
-
-SchnittEreignis::SchnittEreignis()
+export class SchnittEreignis
 {
+public:
+  Vector3d schnittPunkt;
+  Vector3d normale;
+  double distanz;
+  Dreieck *pDreieck;
 
-}
+  SchnittEreignis() {}
 
-
-SchnittEreignis::~SchnittEreignis()
-{
-
-}
-
-SchnittEreignis::SchnittEreignis(
-	Vector3d schnittPunkt,
-	Vector3d normale,
-	double distanz,
-	Dreieck* pDreieck)
-{
-	this->schnittPunkt = schnittPunkt;
-	this->normale = normale;
-	this->distanz = distanz;
-	this->pDreieck = pDreieck;
-}
+  SchnittEreignis(Vector3d schnittPunkt, Vector3d normale, double distanz, Dreieck *pDreieck) {
+    this->schnittPunkt = schnittPunkt;
+    this->normale = normale;
+    this->distanz = distanz;
+    this->pDreieck = pDreieck;
+  }
+};

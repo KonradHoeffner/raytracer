@@ -1,5 +1,3 @@
-/* Verantwortlicher : Konrad
- * Kapselt irgendwie das ganze Szenenzeugs (Objekte, Kamera, Lichtquellen...) */
 
 export module Szene;
 

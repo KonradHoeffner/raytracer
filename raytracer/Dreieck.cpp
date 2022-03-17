@@ -1,14 +1,13 @@
 module;
 
-#include "stdafx.h"
-#include <stdio.h>
 #include <string>
+#include <numbers>
 
 export module Dreieck;
 
 import Vector3d;
 import Material;
-import 3DMath;
+import Math3d;
 
 export class Dreieck
 {
@@ -110,7 +109,7 @@ public:
 	{
 		double* alpha = getBaryzentrisch(punkt);
 		Vector3d normale = alpha[0]*n1+alpha[1]*n2+alpha[2]*n3;
-		if((-sichtVektor).winkel(normale)>(PI/2)) normale*=-1;
+		if((-sichtVektor).winkel(normale)>(std::numbers::pi/2)) normale*=-1;
 		normale.normalize();
 		return normale;
 	}
@@ -138,17 +137,17 @@ bool intersectLine(Vector3d l1,Vector3d l2,Vector3d& schnittPunkt)
 
 	}
 
-	string toString()
+	std::string toString()
 	{
 		return "Dreieck: Punkt1: " + p1.toString() + "Punkt2: " + p2.toString() + "Punkt3: " + p3.toString() + "\n";
 	}
 
-	string toStringBaryzentrisch(Vector3d p)
+	std::string toStringBaryzentrisch(Vector3d p)
 	{
 		double* alpha = getBaryzentrisch(p);
 		char c_str[100];
 		sprintf(c_str,"Gewichtung: %lf * p1 + %lf * p2 + %lf * p3 \n",alpha[0],alpha[1],alpha[2]);
-		string s(c_str);
+		std::string s(c_str);
 		return s;
 	}
 

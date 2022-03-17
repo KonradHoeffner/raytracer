@@ -1,9 +1,18 @@
-// FileImport.cpp: Implementierung der Klasse FileImport.
-//
-//////////////////////////////////////////////////////////////////////
+module;
 
-#include "stdafx.h"
-#include "FileImport.h"
+#include "tinyxml.h"
+
+export module FileImport;
+
+import <string>;
+import <fstream>;
+import Farbe;
+import Vector3d;
+import Szene;
+
+using std::ofstream;
+using std::string;
+using std::endl;
 
 //string fileNameSzene			= "abgabeszene.xml";
 //string fileNameTriangulation	= "triangulationexporttest.xml";
