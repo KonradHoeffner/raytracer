@@ -1,3 +1,10 @@
-g++ -fmodules-ts -std=c++20 raytracer/Szene.cpp -lglut
-g++ -fmodules-ts -std=c++20 raytracer/Main.cpp -lglut
-#g++ raytracer/*.cpp -lglut
+g++ -fmodules-ts -std=c++20 -lGL -lglut \
+raytracer/Vector3d.cpp \
+raytracer/Dreieck.cpp \
+raytracer/3DMath.cpp \
+raytracer/BoundingBox.cpp \
+raytracer/Farbe.cpp \
+raytracer/Lichtquelle.cpp \
+raytracer/Material.cpp \
+raytracer/Kamera.cpp
+raytracer/Szene.cpp

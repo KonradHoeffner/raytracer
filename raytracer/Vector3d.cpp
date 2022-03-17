@@ -1,11 +1,9 @@
 module;
 
-#include <iostream>
 #include <math.h>
+#include <string>
 
 export module Vector3d;
-
-using namespace std;
 
 export class Vector3d
 {
@@ -14,19 +12,13 @@ export class Vector3d
 	double x, y, z;
 
 // arithmetische Operationen
-//	Vector3d& operator += ( Vector3d& cVect ) { x += cVect.x; y += cVect.y; z += cVect.z; }
-//	Vector3d& operator += ( Vector3d* cVect ) { x += cVect->x; y += cVect->y; z += cVect->z; }
 	void operator += ( Vector3d& cVect ) { x += cVect.x; y += cVect.y; z += cVect.z; }
 	void operator += ( Vector3d* cVect ) { x += cVect->x; y += cVect->y; z += cVect->z; }
 
-//	Vector3d& operator -= ( Vector3d& cVect ) { x -= cVect.x; y -= cVect.y; z -= cVect.z; }
-//	Vector3d& operator -= ( Vector3d* cVect ) { x -= cVect->x; y -= cVect->y; z -= cVect->z; }
 	void operator -= ( Vector3d& cVect ) { x -= cVect.x; y -= cVect.y; z -= cVect.z; }
 	void operator -= ( Vector3d* cVect ) { x -= cVect->x; y -= cVect->y; z -= cVect->z; }
 
 	void operator *= ( double f ) { x *= f; y *= f; z *= f; }
-//	Vector3d& operator *= ( Vector3d& cVect ) { x *= cVect.x; y *= cVect.y; z *= cVect.z; }
-//	Vector3d& operator *= ( Vector3d* cVect ) { x *= cVect->x; y *= cVect->y; z *= cVect->z; }
 	void operator *= ( Vector3d& cVect ) { x *= cVect.x; y *= cVect.y; z *= cVect.z; }
 	void operator *= ( Vector3d* cVect ) { x *= cVect->x; y *= cVect->y; z *= cVect->z; }
 
@@ -70,22 +62,9 @@ export class Vector3d
 		z = Z;
 	}
 
-	// Destruktor
-	~Vector3d()
+	std::string toString()
 	{
-	}
-
-	void print()
-	{
-		cout << "x= " << x << " y= " << y << " z= " << z << endl;
-	}
-
-	string toString()
-	{
-		char c_str[50];
-		sprintf(c_str," x: %lf y: %lf z: %lf",x,y,z);
-		string s(c_str);
-		return s;
+		return std::string(" x: ")+std::to_string(x)+std::string("y: ")+std::to_string(y)+std::string(" z: ")+std::to_string(z);
 	}
 
 	// Gibt den Winkel zwischen dem Vector und einem übergebenen Anderen in Bogenmaß zurück.
@@ -103,7 +82,7 @@ export class Vector3d
 		y = Y;
 		z = Z;
 	}
-
+	
 	// normalisiert den Vektor
 	void normalize()
 	{
@@ -112,7 +91,6 @@ export class Vector3d
 		y *= fLength;
 		z *= fLength;
 	}
-
 	// gibt den normierten Vektor zurück
 	Vector3d normalized()  const
 	{

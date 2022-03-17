@@ -49,10 +49,7 @@ export class Farbe
 
 	std::string toString()
 	{
-		char c_str[50];
-		sprintf(c_str," r: %lf g: %lf b: %lf a: %lf",r,g,b,a);
-		std::string s(c_str);
-		return s;
+		return std::string(" r: ")+std::to_string(r)+std::string("g: ")+std::to_string(g)+std::string(" b: ")+std::to_string(b)+std::string(" a: ")+std::to_string(a);
 	}
 
 	void set(double r,double g,double b)

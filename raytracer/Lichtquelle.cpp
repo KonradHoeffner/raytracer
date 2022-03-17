@@ -5,11 +5,10 @@ module;
 export module Lichtquelle;
 
 import Vector3d;
-//import Farbe;
+import Farbe;
 
 export class Lichtquelle {
-public:
-/*
+								public:
 								Vector3d position;
   Farbe farbe;
 
@@ -23,6 +22,6 @@ Lichtquelle(Vector3d position, Farbe farbe) {
   this->farbe = farbe;
 }
 
-std::string toString() { return "Lichtquelle - Position: " + position.toString() + " Farbe: " + farbe.toString(); }
-*/
+//std::string toString() { return "Lichtquelle - Position: " + position.toString() + " Farbe: " + farbe.toString(); }
+
 };

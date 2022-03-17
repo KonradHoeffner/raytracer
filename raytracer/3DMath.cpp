@@ -1,6 +1,6 @@
-module;
+//module;
 
-#include <iostream>
+//#include <iostream>
 
 export module 3DMath;
 
@@ -60,7 +60,7 @@ d=-(normale*p1); // D ist die Entfernung der Ebene vom Ursprung [0,0,0]
 // nun in Ax+By+Cz+D einsetzten, Entfernung der Punkte L1 und L2 von der Ebene kommt heraus
 dist1=(normale*l1)+d;
 dist2=(normale*l2)+d;
-std::cout << "dist1 " << dist1 << std::endl << "dist2 " << dist2 << std::endl;
+//std::cout << "dist1 " << dist1 << std::endl << "dist2 " << dist2 << std::endl;
 // Beide auf derselben Seite der Ebene -> kein Schnittpunkt
 if ((dist1*dist2)>0) return false;
 // Geradengleichung P = L1 + t*L1L2
@@ -69,9 +69,9 @@ l1l2.print();
 // Geradengleichung P einsetzen in N*P + D = 0 -> N*(L1+t*L2) + D = 0 -> t = -(D+n*L1)/(L1L2*n)
 
 double t = -(d+normale*l1)/(l1l2*normale);
-std::cout << "t " << t << std::endl;
+//std::cout << "t " << t << std::endl;
 schnittPunkt = (l1)+t*l1l2;
-std::cout << "Distanz Schnittpunkt - Ebene : " << normale*schnittPunkt+d<< std::endl;
+//std::cout << "Distanz Schnittpunkt - Ebene : " << normale*schnittPunkt+d<< std::endl;
 //schnittPunkt = (l1+(((l2-l1).normalized())*dist1));
 return true;
 };
