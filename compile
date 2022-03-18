@@ -1,16 +1,16 @@
 #!/bin/sh
 clear
 #only needs to be done once, comment out to save time after the first run
-g++ -c -fmodules-ts -x c++-system-header  -std=c++20 iostream algorithm string vector cmath list cassert fstream
+g++ -c -fmodules-ts -x c++-system-header  -std=c++20 iostream algorithm numbers string vector cmath list cassert fstream
 g++ -fmodules-ts -std=c++20 -lGL -lglut -c \
 raytracer/Log.cpp \
 raytracer/Vector3d.cpp \
+raytracer/Farbe.cpp \
 raytracer/Material.cpp \
-raytracer/Dreieck.cpp \
 raytracer/Math3d.cpp \
+raytracer/Dreieck.cpp \
 raytracer/SchnittEreignis.cpp \
 raytracer/tinyxml2.cpp \
-raytracer/Farbe.cpp \
 raytracer/Lichtquelle.cpp \
 raytracer/Kamera.cpp \
 raytracer/BoundingBox.cpp

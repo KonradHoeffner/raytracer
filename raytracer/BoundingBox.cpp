@@ -7,15 +7,22 @@ import Log;
 import <list>;
 import <string>;
 import <cassert>;
-using std::min;
-using std::max;
+import <numbers>;
+import <algorithm>;
+import <cstddef>;
 using std::swap;
 using std::iterator;
 using std::list;
 using std::string;
+using std::numbers::pi;
 
 // Gesplittet wird nur, wenn mindestens so viele Dreiecke in der Box liegen
 const int minPolygoneFuerSplit = 4;
+
+	template <typename T> bool PComp(T * const & a, T * const & b)
+{
+   return *a < *b;
+}
 
 export class BoundingBox {
 public:
@@ -84,7 +91,7 @@ public:
 		for (list<BoundingBox *>::iterator itBox = kindBoxen.begin();
 				 itBox != kindBoxen.end(); itBox++)
 			(*itBox)->setDistanzToRekursiv(punkt);
-		kindBoxen.sort();
+		kindBoxen.sort(PComp<BoundingBox>);
 	}
 
 	// Gibt zurück ob die Box Nachfahren hat
@@ -139,20 +146,14 @@ public:
 
 	// Prüft, ob ein Punkt in der Box enthalten ist
 	bool inside(Vector3d punkt) {
-		return punkt.x >= min.x && punkt.x <= max.x && punkt.y >= min.y &&
-					 punkt.y <= max.y && punkt.z >= min.z && punkt.z <= max.z;
+		return punkt.x >= min.x && punkt.x <= max.x && punkt.y >= min.y && punkt.y <= max.y && punkt.z >= min.z && punkt.z <= max.z;
 	}
-
-	double min3(double a, double b, double c) { return min(a, min(b, c)); }
-
-	double max3(double a, double b, double c) { return max(a, max(b, c)); }
 
 	// Prüft, ob eine Linie von l1 nach l2 die Bounding Box schneidet
 	bool inside(Vector3d l1, Vector3d l2) {
 		Vector3d l1l2 = l2 - l1;
-		double tMinX, tMaxX, tMinY, tMaxY, tMinZ, tMaxZ, tMin,
-	tMax; // Geradenparameter t, sodass der x/y/z - Wert von l1 + t*l1l2 =
-							// min.x/y/z bzw. max.x/y/z ist
+		// Geradenparameter t, sodass der x/y/z - Wert von l1 + t*l1l2 =min.x/y/z bzw. max.x/y/z ist
+		double tMinX, tMaxX, tMinY, tMaxY, tMinZ, tMaxZ, tMin, tMax;
 
 		// Prüfung x - Wert
 
@@ -160,14 +161,11 @@ public:
 		{
 			tMinX = (min.x - l1.x) / l1l2.x;
 			tMaxX = (max.x - l1.x) / l1l2.x;
-			if (tMinX < 0 && tMaxX < 0)
-	return false; // Strahl fängt erst hinter Box an
-			if (tMinX > tMaxX)
-	swap(tMinX, tMaxX);
+			if (tMinX < 0 && tMaxX < 0)	return false; // Strahl fängt erst hinter Box an
+			//if (tMinX > tMaxX) swap(tMinX, tMaxX);
 		} else // x - Wert immer gleich, hängt also nicht von t ab
 		{
-			if (l1.x < min.x || l1.x > max.x)
-	return false;
+			if (l1.x < min.x || l1.x > max.x) return false;
 			tMinX = 0;
 			tMaxX = 1;
 		}
@@ -176,14 +174,11 @@ public:
 		{
 			tMinY = (min.y - l1.y) / l1l2.y;
 			tMaxY = (max.y - l1.y) / l1l2.y;
-			if (tMinY < 0 && tMaxY < 0)
-	return false; // Strahl fängt erst hinter Box an
-			if (tMinY > tMaxY)
-	swap(tMinY, tMaxY);
+			if (tMinY < 0 && tMaxY < 0)	return false; // Strahl fängt erst hinter Box an
+			//if (tMinY > tMaxY) swap(tMinY, tMaxY);
 		} else // y - Wert immer gleich, hängt also nicht von t ab
 		{
-			if (l1.y < min.y || l1.y > max.y)
-	return false;
+			if (l1.y < min.y || l1.y > max.y) return false;
 			tMinY = 0;
 			tMaxY = 1;
 		}
@@ -192,21 +187,18 @@ public:
 		{
 			tMinZ = (min.z - l1.z) / l1l2.z;
 			tMaxZ = (max.z - l1.z) / l1l2.z;
-			if (tMinZ < 0 && tMaxZ < 0)
-	return false; // Strahl fängt erst hinter Box an
-			if (tMinZ > tMaxZ)
-	swap(tMinZ, tMaxZ);
+			if (tMinZ < 0 && tMaxZ < 0) return false; // Strahl fängt erst hinter Box an
+			//if (tMinZ > tMaxZ) swap(tMinZ, tMaxZ);
 		} else // z - Wert immer gleich, hängt also nicht von t ab
 		{
-			if (l1.z < min.z || l1.z > max.z)
-	return false;
+			if (l1.z < min.z || l1.z > max.z) return false;
 			tMinZ = 0;
 			tMaxZ = 1;
 		}
 
 		// Schnittmenge der möglichen t's bestimmen
-		tMin = max3(tMinX, tMinY, tMinZ);
-		tMax = min3(tMaxX, tMaxY, tMaxZ);
+		tMin = std::max({tMinX, tMinY, tMinZ});
+		tMax = std::min({tMaxX, tMaxY, tMaxZ});
 		tMax = std::min(tMax, 1.0);
 		return tMin < tMax;
 
@@ -315,7 +307,7 @@ public:
 		{
 
 			for (list<Dreieck *>::iterator it = dreiecke.begin(); it != dreiecke.end(); it++) {
-	if (intersectDreieckLine(**it, l1, l2, schnittPunkt))
+	if ((**it).intersectLine(l1, l2, schnittPunkt))
 		return true;
 			}
 
@@ -332,10 +324,7 @@ public:
 		return false;
 	}
 
-	SchnittEreignis *getFirstSchnittEreignis(Vector3d l1,
-																												Vector3d l2,
-																												double distMin,
-																												double distMax) {
+	SchnittEreignis *getFirstSchnittEreignis(Vector3d l1, Vector3d l2, double distMin, double distMax) {
 		SchnittEreignis *pSchnittEreignis = NULL;
 		Vector3d sichtVektor = (l2 - l1).normalized();
 		l1 = l1 + sichtVektor * distMin;
@@ -352,7 +341,7 @@ public:
 					 it != dreiecke.end(); it++) {
 	Dreieck *d = *it;
 
-	if (intersectDreieckLine(*d, l1, l1 + (sichtVektor)*distMax,
+	if ((*d).intersectLine(l1, l1 + (sichtVektor)*distMax,
 													 schnittPunkt) &&
 			(schnittPunkt - l1).length() < distMax) {
 		distMax = (schnittPunkt - l1).length();
@@ -364,7 +353,7 @@ public:
 #if !defined(FLAT_SHADING)
 		normale = d->getNormale(schnittPunkt);
 		// normale*=-1;
-		if (sichtVektor.winkel(normale) < (PI / 2))
+		if (sichtVektor.winkel(normale) < (pi / 2))
 			normale *= -1;
 #endif
 		// normale.normalize();
