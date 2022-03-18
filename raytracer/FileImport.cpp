@@ -5,44 +5,17 @@ module;
 export module FileImport;
 
 import <string>;
-import <fstream>;
 import Farbe;
+import Log;
 import Vector3d;
 import Szene;
 
-using std::ofstream;
 using std::string;
 using std::endl;
 
 //string fileNameSzene			= "abgabeszene.xml";
 //string fileNameTriangulation	= "triangulationexporttest.xml";
 
-string fileNameLogfile("logfile.txt"); 
-ofstream logfile(fileNameLogfile.c_str());
-
-ofstream& getLogfile()
-{
-	return logfile;
-}
-
-// Schreibt Inhalt einer Variablen ins Logfile
-void logVar(string message, double d)
-{
-	logfile << message << ": " << d << endl;
-}
-
-// Schreibt Inhalt einer Variablen ins Logfile
-void logVar(string message, int i)
-{
-	logfile << message << ": " << i << endl;
-}
-
-void logVar(string message, bool b)
-{
-	logfile << message << ": ";
-	logfile << (b?"wahr":"falsch"); 
-	logfile << endl;
-}
 
 
 

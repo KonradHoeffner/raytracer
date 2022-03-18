@@ -7,8 +7,10 @@ import BoundingBox;
 import Lichtquelle;
 import Dreieck;
 import Material;
+import <list>;
+import <string>;
 
-class Szene
+export class Szene
 {
 public:
 	string fnTriangulation;

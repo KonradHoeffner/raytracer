@@ -3,7 +3,7 @@ export module BoundingBox;
 import Vector3d;
 import Dreieck;
 import SchnittEreignis;
-import FileImport;
+import Log;
 import <list>;
 import <string>;
 import <cassert>;
