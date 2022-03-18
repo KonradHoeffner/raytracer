@@ -1,6 +1,6 @@
 module;
 
-#include "tinyxml.h"
+#include "tinyxml2.h"
 
 export module FileImport;
 
