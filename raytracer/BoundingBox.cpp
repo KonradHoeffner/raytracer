@@ -8,21 +8,21 @@ import <list>;
 import <string>;
 import <cassert>;
 import <numbers>;
-import <algorithm>;
-import <cstddef>;
-using std::swap;
+import <utility>;
 using std::iterator;
 using std::list;
 using std::string;
+using std::swap;
 using std::numbers::pi;
 
 // Gesplittet wird nur, wenn mindestens so viele Dreiecke in der Box liegen
 const int minPolygoneFuerSplit = 4;
 
-	template <typename T> bool PComp(T * const & a, T * const & b)
+template <typename T> bool PComp(T * const & a, T * const & b)
 {
-   return *a < *b;
+	return *a < *b;
 }
+
 
 export class BoundingBox {
 public:
@@ -162,7 +162,7 @@ public:
 			tMinX = (min.x - l1.x) / l1l2.x;
 			tMaxX = (max.x - l1.x) / l1l2.x;
 			if (tMinX < 0 && tMaxX < 0)	return false; // Strahl fängt erst hinter Box an
-			//if (tMinX > tMaxX) swap(tMinX, tMaxX);
+			if (tMinX > tMaxX) swap(tMinX, tMaxX);
 		} else // x - Wert immer gleich, hängt also nicht von t ab
 		{
 			if (l1.x < min.x || l1.x > max.x) return false;
@@ -175,7 +175,7 @@ public:
 			tMinY = (min.y - l1.y) / l1l2.y;
 			tMaxY = (max.y - l1.y) / l1l2.y;
 			if (tMinY < 0 && tMaxY < 0)	return false; // Strahl fängt erst hinter Box an
-			//if (tMinY > tMaxY) swap(tMinY, tMaxY);
+			if (tMinY > tMaxY) swap(tMinY, tMaxY);
 		} else // y - Wert immer gleich, hängt also nicht von t ab
 		{
 			if (l1.y < min.y || l1.y > max.y) return false;
@@ -188,7 +188,7 @@ public:
 			tMinZ = (min.z - l1.z) / l1l2.z;
 			tMaxZ = (max.z - l1.z) / l1l2.z;
 			if (tMinZ < 0 && tMaxZ < 0) return false; // Strahl fängt erst hinter Box an
-			//if (tMinZ > tMaxZ) swap(tMinZ, tMaxZ);
+			if (tMinZ > tMaxZ) swap(tMinZ, tMaxZ);
 		} else // z - Wert immer gleich, hängt also nicht von t ab
 		{
 			if (l1.z < min.z || l1.z > max.z) return false;

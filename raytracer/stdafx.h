@@ -11,7 +11,6 @@
 #pragma warning(disable:4786)
 #pragma warning(disable:4514)
 
-const double PI=3.141592653;
 //const int BILD_HOEHE = 200;
 //const int BILD_BREITE = 320;
 const int STRAHL_REKURSIONS_TIEFE = 4;
@@ -21,17 +20,7 @@ const int STRAHL_REKURSIONS_TIEFE = 4;
 #define REFLEXION
 //#define unterteilung 2
 
-#include <map>
-#include <cstring>
-#include <vector>
-#include <list>
-#include <string>
-#include <math.h>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include "tinyxml.h"
-
+#include "tinyxml2.h"
 #include <GL/gl.h>			// Header File For The OpenGL32 Library
 #include <GL/glu.h>			// Header File For The GLu32 Library
 #include <GL/glut.h>

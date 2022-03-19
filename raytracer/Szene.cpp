@@ -1,4 +1,3 @@
-
 export module Szene;
 
 import Farbe;
