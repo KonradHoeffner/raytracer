@@ -1,17 +1,11 @@
 export module Szene;
 
-import Farbe;
-import Kamera;
 import BoundingBox;
-import Lichtquelle;
-import Dreieck;
-import Material;
-import <list>;
-import <string>;
 
 export class Szene
 {
-public:
+/*
+		public:
 	string fnTriangulation;
 	string fnSzene;
 	int bildBreite;
@@ -39,4 +33,7 @@ public:
 	}
 
 	virtual ~Szene();
+	*/
 };
+
+int main() {}

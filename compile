@@ -1,7 +1,8 @@
 #!/bin/sh
 clear
 #only needs to be done once, comment out to save time after the first run
-g++ -c -fmodules-ts -x c++-system-header  -std=c++20 iostream algorithm numbers string vector cmath list cassert fstream utility
+rm -rf gcm.cache
+g++ -c -fmodules-ts -x c++-system-header  -std=c++20 iostream algorithm numbers string vector cmath list cassert fstream utility array vector
 g++ -fmodules-ts -std=c++20 -lGL -lglut \
 raytracer/Log.cpp \
 raytracer/Vector3d.cpp \
@@ -14,7 +15,7 @@ raytracer/tinyxml2.cpp \
 raytracer/Lichtquelle.cpp \
 raytracer/Kamera.cpp \
 raytracer/BoundingBox.cpp \
-raytracer/Szene.cpp \
-raytracer/FileImport.cpp \
-raytracer/Main.cpp \
--o raytracer.out
+raytracer/Szene.cpp -o test.out
+#raytracer/FileImport.cpp \
+#raytracer/Main.cpp -c
+#-o raytracer.out
