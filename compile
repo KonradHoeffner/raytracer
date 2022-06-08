@@ -1,7 +1,7 @@
 #!/bin/sh
 clear
 #only needs to be done once, comment out to save time after the first run
-g++ -c -fmodules-ts -x c++-system-header  -std=c++20 iostream algorithm numbers string vector cmath list cassert fstream utility
+g++ -c -fmodules-ts -x c++-system-header  -std=c++20 iostream algorithm numbers string vector map cmath list cassert fstream utility ostream
 g++ -fmodules-ts -std=c++20 -lGL -lglut \
 raytracer/Log.cpp \
 raytracer/Vector3d.cpp \

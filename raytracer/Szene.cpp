@@ -8,6 +8,12 @@ import Dreieck;
 import Material;
 import <list>;
 import <string>;
+import <map>;
+import <list>;
+using std::string;
+using std::map;
+using std::list;
+namespace std _GLIBCXX_VISIBILITY(default){} // gcc 11 and 12 bug workaround, see https://stackoverflow.com/questions/70456868/vector-in-c-module-causes-useless-bad-file-data-gcc-output
 
 export class Szene
 {

@@ -5,6 +5,8 @@ module;
 export module FileImport;
 
 import <string>;
+import <ostream>;
+import <cassert>;
 import Farbe;
 import Log;
 import Vector3d;
@@ -12,6 +14,9 @@ import Szene;
 
 using std::string;
 using std::endl;
+using tinyxml2::XMLElement;
+using tinyxml2::XMLNode;
+using tinyxml2::XMLDocument;
 
 //string fileNameSzene			= "abgabeszene.xml";
 //string fileNameTriangulation	= "triangulationexporttest.xml";
@@ -20,29 +25,29 @@ using std::endl;
 
 
 /*Gibt erstes Kindelement mit bestimmtem Namen zurück. Erwartet, dass dieses auch existiert (Ansonsten Terminierung des Programms durch assert). */
-TiXmlElement* getChildElementOf(TiXmlElement* element,string name)
+XMLElement* getChildElementOf(XMLElement* element,string name)
 {	
-	TiXmlNode* xmlNode = element->FirstChildElement(name);
+	XMLNode* xmlNode = element->FirstChildElement(name.c_str());
 	assert( xmlNode );
 
-	TiXmlElement* childElement;
+	XMLElement* childElement;
 	childElement = xmlNode->ToElement();
 	assert( childElement  );
 	return childElement;
 }
 
 // Funktioniert komischerweise nur unter angabe Aes Namens des Root - Elementes, nur doc.FirstChild() ohne parameter funktioniert nicht.
-TiXmlElement* getRootElement(TiXmlDocument& doc,string name)
+XMLElement* getRootElement(XMLDocument& doc,string name)
 {
-	TiXmlNode* xmlNode = doc.FirstChild(name);
+	XMLNode* xmlNode = doc.FirstChild(name.c_str());
 	assert( xmlNode );
-	TiXmlElement* childElement;
+	XMLElement* childElement;
 	childElement = xmlNode->ToElement();
 	assert( childElement  );
 	return childElement;
 }
 
-Vector3d getVector3dFromElement(TiXmlElement* element)
+Vector3d getVector3dFromElement(XMLElement* element)
 {
 	assert(element);
 	Vector3d v;
@@ -52,7 +57,7 @@ Vector3d getVector3dFromElement(TiXmlElement* element)
 	return v;
 }
 
-Farbe getFarbeFromElement3d(TiXmlElement* element)
+Farbe getFarbeFromElement3d(XMLElement* element)
 {
 	assert(element);
 	Farbe f;
@@ -63,7 +68,7 @@ Farbe getFarbeFromElement3d(TiXmlElement* element)
 	return f;
 }
 
-Farbe getFarbeFromElement4d(TiXmlElement* element)
+Farbe getFarbeFromElement4d(XMLElement* element)
 {
 	assert(element);
 	Farbe f;
@@ -77,7 +82,7 @@ Farbe getFarbeFromElement4d(TiXmlElement* element)
 void importSzene(Szene& szene)
 {
 
-	TiXmlDocument doc( szene.fnSzene );
+	XMLDocument doc( szene.fnSzene );
 	bool loadOkay = doc.LoadFile();
 
 	if ( !loadOkay )
@@ -89,32 +94,32 @@ void importSzene(Szene& szene)
 
 	logfile << "XML Datei erfolgreich geöffnet: '" << szene.fnSzene << "'." << endl;
 	
-	TiXmlNode* xmlNode = 0;
+	XMLNode* xmlNode = 0;
 
-	TiXmlElement* rootElement = getRootElement(doc,"szene");
+	XMLElement* rootElement = getRootElement(doc,"szene");
 
-	TiXmlElement* triangulationElement = getChildElementOf(rootElement,"triangulation");
+	XMLElement* triangulationElement = getChildElementOf(rootElement,"triangulation");
 	
 	szene.fnTriangulation = *(new string(triangulationElement->Attribute("src")));
 	//getLogfile() << szene.fnTriangulation << " hä?";
 
-	TiXmlElement* fensterElement = getChildElementOf(rootElement,"fenster");
+	XMLElement* fensterElement = getChildElementOf(rootElement,"fenster");
 	fensterElement->QueryIntAttribute("breite",&szene.bildBreite);
 	fensterElement->QueryIntAttribute("hoehe",&szene.bildHoehe);
 
-	TiXmlElement* raumteilungElement = getChildElementOf(rootElement,"raumteilung");
+	XMLElement* raumteilungElement = getChildElementOf(rootElement,"raumteilung");
 	assert(raumteilungElement);
 	raumteilungElement->QueryIntAttribute("unterteilung",&szene.unterteilung);
 
-	TiXmlElement* kameraElement = getChildElementOf(rootElement,"kamera");
+	XMLElement* kameraElement = getChildElementOf(rootElement,"kamera");
 
-	TiXmlElement* kameraPositionElement = getChildElementOf(kameraElement,"position");
+	XMLElement* kameraPositionElement = getChildElementOf(kameraElement,"position");
 	szene.kamera.position = getVector3dFromElement(kameraPositionElement);
 
-	TiXmlElement* kameraZielElement = getChildElementOf(kameraElement,"ziel");
+	XMLElement* kameraZielElement = getChildElementOf(kameraElement,"ziel");
 	szene.kamera.ziel = getVector3dFromElement(kameraZielElement);
 
-	TiXmlElement* kameraFovyElement = getChildElementOf(kameraElement,"fovy");
+	XMLElement* kameraFovyElement = getChildElementOf(kameraElement,"fovy");
 	kameraFovyElement->QueryDoubleAttribute("winkel",&szene.kamera.fovyGrad);
 	
 	szene.kamera.fovxGrad = szene.kamera.fovyGrad * szene.bildBreite / szene.bildHoehe;
@@ -122,33 +127,33 @@ void importSzene(Szene& szene)
 	szene.kamera.fovy = szene.kamera.fovyGrad * PI / 180;
 	szene.kamera.fovx = szene.kamera.fovxGrad * PI / 180;;
 
-	TiXmlElement* beleuchtungElement = getChildElementOf(rootElement,"beleuchtung");
+	XMLElement* beleuchtungElement = getChildElementOf(rootElement,"beleuchtung");
 
-	TiXmlElement* hintergrundfarbeElement = getChildElementOf(beleuchtungElement,"hintergrundfarbe");
+	XMLElement* hintergrundfarbeElement = getChildElementOf(beleuchtungElement,"hintergrundfarbe");
 	szene.hintergrundfarbe = getFarbeFromElement3d(hintergrundfarbeElement);
 
-	TiXmlElement* ambientehelligkeitElement = getChildElementOf(beleuchtungElement,"ambientehelligkeit");
+	XMLElement* ambientehelligkeitElement = getChildElementOf(beleuchtungElement,"ambientehelligkeit");
 	szene.ambientehelligkeit = getFarbeFromElement3d(ambientehelligkeitElement);
 
-	TiXmlElement* abschwaechungElement = getChildElementOf(beleuchtungElement,"abschwaechung");
+	XMLElement* abschwaechungElement = getChildElementOf(beleuchtungElement,"abschwaechung");
 	abschwaechungElement->QueryDoubleAttribute("konstant",&szene.abschwaechung_konstant);
 	abschwaechungElement->QueryDoubleAttribute("linear",&szene.abschwaechung_linear);
 	abschwaechungElement->QueryDoubleAttribute("quadratisch",&szene.abschwaechung_quadratisch);
 
 	// Alle Lichtquellen durchgehen (Alle Kinder des Elements "beleuchtung" mit dem Mamen "lichtquelle")
 	int lichtquellenCount = 0;
-	for(TiXmlNode* node = beleuchtungElement->FirstChild( "lichtquelle" );
+	for(XMLNode* node = beleuchtungElement->FirstChild( "lichtquelle" );
 		 node;
 		 node = node->NextSibling( "lichtquelle" ) )
 	{
-		TiXmlElement* lichtquelleElement;
+		XMLElement* lichtquelleElement;
 		lichtquelleElement = node->ToElement();
 		assert(lichtquelleElement);
 
-		TiXmlElement* lichtquellePositionElement = getChildElementOf(lichtquelleElement,"position");
+		XMLElement* lichtquellePositionElement = getChildElementOf(lichtquelleElement,"position");
 		Vector3d lichtquellePosition = getVector3dFromElement(lichtquellePositionElement);
 		
-		TiXmlElement* lichtquelleFarbeElement = getChildElementOf(lichtquelleElement,"farbe");
+		XMLElement* lichtquelleFarbeElement = getChildElementOf(lichtquelleElement,"farbe");
 		Farbe lichtquelleFarbe = getFarbeFromElement3d(lichtquelleFarbeElement);
 
 		//Lichtquelle* lichtquelle = new Lichtquelle(lichtquellePosition,lichtquelleFarbe);
@@ -173,8 +178,8 @@ void importSzene(Szene& szene)
 
 void importTriangulation(Szene& szene)
 {
-	//TiXmlDocument doc( fileNameTriangulation);
-	TiXmlDocument doc( szene.fnTriangulation);
+	//XMLDocument doc( fileNameTriangulation);
+	XMLDocument doc( szene.fnTriangulation);
 	bool loadOkay = doc.LoadFile();
 
 	if ( !loadOkay )
@@ -186,18 +191,18 @@ void importTriangulation(Szene& szene)
 
 	logfile << "XML Datei erfolgreich geöffnet: '" << szene.fnTriangulation << "'." << endl;
 	
-	TiXmlNode* xmlNode = 0;
+	XMLNode* xmlNode = 0;
 
-	TiXmlElement* rootElement = getRootElement(doc,"triangulation");
+	XMLElement* rootElement = getRootElement(doc,"triangulation");
 
 	// --------- Materialien -------------------------------------------------------------------
 	{
 	int materialienCount = 0;
-	for(TiXmlNode* node = rootElement->FirstChild( "material" );
+	for(XMLNode* node = rootElement->FirstChild( "material" );
 		 node;
 		 node = node->NextSibling( "material" ) )
 	{
-		TiXmlElement* materialElement;
+		XMLElement* materialElement;
 		materialElement = node->ToElement();
 		assert(materialElement);
 
@@ -208,13 +213,13 @@ void importTriangulation(Szene& szene)
 		materialElement->QueryDoubleAttribute("glanzwert",&glanzwert);
 		logVar("glanzwert",glanzwert);
 
-		TiXmlElement* ambientElement = getChildElementOf(materialElement,"ambient");
+		XMLElement* ambientElement = getChildElementOf(materialElement,"ambient");
 		ambient = getFarbeFromElement3d(ambientElement);
 
-		TiXmlElement* diffusElement = getChildElementOf(materialElement,"diffus");
+		XMLElement* diffusElement = getChildElementOf(materialElement,"diffus");
 		diffus = getFarbeFromElement4d(diffusElement);
 
-		TiXmlElement* spiegelndElement = getChildElementOf(materialElement,"spiegelnd");
+		XMLElement* spiegelndElement = getChildElementOf(materialElement,"spiegelnd");
 		spiegelnd = getFarbeFromElement4d(spiegelndElement);
 		
 		Material* material = new Material(materialName,ambient,diffus,spiegelnd,glanzwert);
@@ -227,11 +232,11 @@ void importTriangulation(Szene& szene)
 	// --------- Dreiecke ----------------------------------------------------------------------
 	{
 	int dreieckeCount = 0;
-	for(TiXmlNode* node = rootElement->FirstChild( "dreieck" );
+	for(XMLNode* node = rootElement->FirstChild( "dreieck" );
 		 node;
 		 node = node->NextSibling( "dreieck" ) )
 	{
-		TiXmlElement* dreieckElement;
+		XMLElement* dreieckElement;
 		dreieckElement = node->ToElement();
 		assert(dreieckElement);
 
@@ -239,22 +244,22 @@ void importTriangulation(Szene& szene)
 
 		Vector3d p1,p2,p3,n1,n2,n3;
 
-		TiXmlElement* punkt1Element = getChildElementOf(dreieckElement,"punkt1");
+		XMLElement* punkt1Element = getChildElementOf(dreieckElement,"punkt1");
 		p1 = getVector3dFromElement(punkt1Element);
 
-		TiXmlElement* punkt2Element = getChildElementOf(dreieckElement,"punkt2");
+		XMLElement* punkt2Element = getChildElementOf(dreieckElement,"punkt2");
 		p2 = getVector3dFromElement(punkt2Element);
 
-		TiXmlElement* punkt3Element = getChildElementOf(dreieckElement,"punkt3");
+		XMLElement* punkt3Element = getChildElementOf(dreieckElement,"punkt3");
 		p3 = getVector3dFromElement(punkt3Element);
 
-		TiXmlElement* normale1Element = getChildElementOf(dreieckElement,"normale1");
+		XMLElement* normale1Element = getChildElementOf(dreieckElement,"normale1");
 		n1 = getVector3dFromElement(normale1Element);
 
-		TiXmlElement* normale2Element = getChildElementOf(dreieckElement,"normale2");
+		XMLElement* normale2Element = getChildElementOf(dreieckElement,"normale2");
 		n2 = getVector3dFromElement(normale2Element);
 
-		TiXmlElement* normale3Element = getChildElementOf(dreieckElement,"normale3");
+		XMLElement* normale3Element = getChildElementOf(dreieckElement,"normale3");
 		n3 = getVector3dFromElement(normale3Element);
 		
 		Dreieck* pDreieck = new Dreieck(p1,p2,p3,n1,n2,n3,szene.materialien[materialName]);

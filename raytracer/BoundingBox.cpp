@@ -16,6 +16,8 @@ using std::string;
 using std::swap;
 using std::numbers::pi;
 
+namespace std _GLIBCXX_VISIBILITY(default){} // gcc 11 and 12 bug workaround, see https://stackoverflow.com/questions/70456868/vector-in-c-module-causes-useless-bad-file-data-gcc-output
+
 // Gesplittet wird nur, wenn mindestens so viele Dreiecke in der Box liegen
 const int minPolygoneFuerSplit = 4;
 
