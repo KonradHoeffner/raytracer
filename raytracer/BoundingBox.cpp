@@ -9,6 +9,7 @@ import <string>;
 import <cassert>;
 import <numbers>;
 import <utility>;
+import <algorithm>;
 using std::iterator;
 using std::list;
 using std::string;
@@ -277,7 +278,7 @@ public:
 		}
 	}
 
-	string toString() {
+	std::string toString() {
 		return "Min: " + min.toString() + "Max: " + max.toString() + "\n";
 	}
 

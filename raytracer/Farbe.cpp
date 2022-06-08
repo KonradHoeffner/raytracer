@@ -1,6 +1,7 @@
 export module Farbe;
 
 import <algorithm>;
+import <string>;
 
 export class Farbe
 {
